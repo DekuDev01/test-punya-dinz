@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>KIPAS PRIVATE SERVER - Download FF</title>
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', 'Segoe UI', system-ui, 'Inter', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(145deg, #0a2f1f 0%, #051a0e 100%);
+      min-height: 100vh;
+      padding: 0 16px 40px 16px;
+    }
+
+    .main-container {
+      max-width: 500px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .popup-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(8, 30, 16, 0.94);
+      backdrop-filter: blur(12px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+    }
+
+    .popup-card {
+      background: rgba(0, 0, 0, 0.78);
+      backdrop-filter: blur(14px);
+      width: 86%;
+      max-width: 340px;
+      border-radius: 32px;
+      padding: 28px 20px 32px;
+      text-align: center;
+      box-shadow: 0 20px 35px rgba(0, 0, 0, 0.6);
+      transform: scale(0.94);
+      animation: popupZoomIn 0.26s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+      position: relative;
+      border: 1px solid rgba(70, 130, 90, 0.4);
+    }
+
+    @keyframes popupZoomIn {
+      0% { opacity: 0; transform: scale(0.88); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .close-popup {
+      position: absolute;
+      top: 16px;
+      right: 20px;
+      background: rgba(255,255,255,0.08);
+      width: 32px;
+      height: 32px;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: #ccc;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .close-popup:hover { background: rgba(200, 60, 60, 0.7); color: white; }
+
+    .profile-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 100px;
+      object-fit: cover;
+      background: #2c3e2b;
+      border: 2px solid rgba(80, 180, 100, 0.7);
+      margin: 8px auto 12px;
+      display: block;
+    }
+
+    .popup-card h3 { font-size: 24px; font-weight: 800; color: #e2f5e8; }
+    .subtext { color: #bcbcbc; font-size: 13px; margin: 4px 0 16px; }
+
+    .two-buttons-row { display: flex; gap: 12px; justify-content: center; margin-bottom: 24px; }
+    .small-btn {
+      background: rgba(30,30,40,0.8);
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #e0e0e0;
+      border: 1px solid #3c4a3a;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .small-btn.border-light { border: 1px solid #4f6b4a; background: rgba(0,0,0,0.4); }
+
+    .big-action-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 14px 0;
+      border-radius: 24px;
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 12px;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(95deg, #1a5fcf, #0fa86a);
+      color: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .big-action-btn.lewati { background: #0a4b2e; }
+
+    header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 8px; }
+    .logo-area { display: flex; align-items: center; gap: 12px; }
+    .logo-img { width: 46px; height: 46px; border-radius: 20px; object-fit: cover; }
+    .logo-text h2 { font-size: 20px; font-weight: 800; color: white; }
+    .logo-text p { font-size: 10px; color: #86efac; }
+    .header-actions { display: flex; gap: 14px; align-items: center; }
+    .channel-pill {
+      background: #0e8246;
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-weight: 700;
+      font-size: 14px;
+      color: white;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      cursor: pointer;
+    }
+    .menu-icon { font-size: 24px; color: white; cursor: pointer; }
+
+    .hero { text-align: center; margin: 20px 0 12px; }
+    .glow-text { font-size: 32px; font-weight: 900; color: #ffffff; text-shadow: 2px 2px 0 #0f4a2f; }
+    .sub-hero { font-size: 18px; font-weight: 600; color: #dbffea; text-shadow: 1px 1px 0 #0b3b22; margin-top: 6px; }
+
+    .status-row { display: flex; gap: 14px; margin: 24px 0; }
+    .stat-card {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(80, 180, 100, 0.5);
+      border-radius: 24px;
+      padding: 12px 16px;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .dot { width: 12px; height: 12px; border-radius: 12px; background: #2ecc71; }
+    .dot.pink { background: #f472b6; }
+    .blink { animation: blink 1.4s infinite; }
+    @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.4; } 100% { opacity: 1; } }
+    .stat-text { font-weight: bold; color: #f0f0f0; font-size: 14px; }
+
+    .video-preview {
+      position: relative;
+      margin: 15px 0 25px;
+      border-radius: 24px;
+      overflow: hidden;
+      aspect-ratio: 16 / 9;
+      cursor: pointer;
+    }
+    .video-thumb { width: 100%; height: 100%; object-fit: cover; }
+    .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.7);
+      width: 54px;
+      height: 54px;
+      border-radius: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+    }
+    .duration-badge {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      background: black;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      color: white;
+    }
+
+    .ad-banner-container {
+      margin: 15px 0;
+      text-align: center;
+      background: rgba(0,0,0,0.1);
+      border-radius: 16px;
+      padding: 8px;
+    }
+    .ad-label {
+      font-size: 9px;
+      color: rgba(255,255,255,0.3);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .banner-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+    }
+    .banner-item {
+      background: rgba(0,0,0,0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      display: inline-block;
+    }
+
+    .download-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; margin-bottom: 30px; }
+    .download-card {
+      background: linear-gradient(105deg, #166d47, #1f8a5a);
+      border-radius: 24px;
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      cursor: pointer;
+      border: 1px solid rgba(255,255,200,0.15);
+      transition: all 0.2s;
+    }
+    .download-card:active { transform: scale(0.98); }
+    .card-icon { font-size: 26px; width: 40px; text-align: center; color: white; }
+    .card-title { font-weight: 800; font-size: 18px; color: white; }
+    .card-size { font-size: 12px; color: #e0ffd4; }
+
+    button, .download-card, .channel-pill, .big-action-btn { cursor: pointer; transition: all 0.2s; }
+    button:hover, .download-card:hover, .channel-pill:hover { filter: brightness(1.03); transform: scale(0.99); }
+    html { scroll-behavior: smooth; }
+    footer { height: 20px; }
+
+    .toast-notification {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background: linear-gradient(135deg, #1a5fcf, #0fa86a);
+      color: white;
+      padding: 12px 24px;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 13px;
+      z-index: 2000;
+      opacity: 0;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    .toast-notification.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1500;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 15px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+    }
+    .loading-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255,255,255,0.2);
+      border-top: 4px solid #0fa86a;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    .loading-text {
+      color: white;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-spinner"></div>
+  <div class="loading-text">Memproses iklan...</div>
+</div>
+
+<div class="toast-notification" id="toastNotif"></div>
+
+<!-- POPUP AWAL -->
+<div class="popup-overlay" id="popupOverlay">
+  <div class="popup-card">
+    <div class="close-popup" id="closePopupBtn"><i class="fas fa-times"></i></div>
+    <img class="profile-img" id="profileImg" src="https://i.postimg.cc/7hm4DhsV/Screenshot-2026-04-18-13-19-53-41.jpg" alt="profile">
+    <h3>PENGUMUMAN 📢 SEPUTAR KIPAS PRIVATE SERVER</h3>
+    <div class="subtext">Channel • 22,111 followers</div>
+    <div class="two-buttons-row">
+      <div class="small-btn" id="forwardBtnPopup"><i class="fas fa-share"></i> Forward</div>
+      <div class="small-btn border-light" id="copyLinkPopup"><i class="fas fa-copy"></i> Copy link</div>
+    </div>
+    <button class="big-action-btn" id="saluranPopupBtn">
+      <i class="fab fa-telegram-plane"></i> SALURAN
+    </button>
+    <button class="big-action-btn lewati" id="lewatiIklanBtn">
+      <i class="fas fa-forward"></i> LEWATI IKLAN
+    </button>
+  </div>
+</div>
+
+<!-- HALAMAN UTAMA -->
+<div class="main-container" id="mainContent" style="display: none;">
+  <header>
+    <div class="logo-area">
+      <img class="logo-img" id="logoImg" src="https://cdn-icons-png.flaticon.com/512/742/742742.png" alt="logo">
+      <div class="logo-text"><h2>DINZZ</h2><p>KIPAS</p></div>
+    </div>
+    <div class="header-actions">
+      <div class="channel-pill" id="headerSaluranBtn"><i class="fab fa-telegram"></i> Saluran</div>
+      <div class="menu-icon" id="menuIconBtn"><i class="fas fa-bars"></i></div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <div class="glow-text">KIPAS PRIVATE SERVER</div>
+    <div class="sub-hero">BERDIRI SEJAK 2023</div>
+  </div>
+
+  <div class="status-row">
+    <div class="stat-card"><div class="dot blink"></div><div><span class="stat-text">STATUS: ONLINE</span></div></div>
+    <div class="stat-card"><div class="dot pink"></div><div><span class="stat-text">BERHASIL DOWNLOAD: 60.512</span></div></div>
+  </div>
+
+  <!-- IKLAN BANNER -->
+  <div class="ad-banner-container">
+    <div class="ad-label">Advertisement</div>
+    <div class="banner-wrapper">
+      <div class="banner-item" id="banner-320x50"></div>
+      <div class="banner-item" id="banner-468x60"></div>
+    </div>
+  </div>
+
+  <div class="video-preview" id="videoPreviewClick">
+    <img class="video-thumb" id="videoThumb" src="https://i.ytimg.com/vi/0tLVOqn0D8A/hqdefault.jpg" alt="preview">
+    <div class="play-icon"><i class="fas fa-play"></i></div>
+    <div class="duration-badge">02:45</div>
+  </div>
+
+  <div class="download-grid">
+    <div class="download-card" data-link="DOWNLOAD1">
+      <div class="card-icon"><i class="fas fa-download"></i></div>
+      <div class="card-info"><div class="card-title">FFKIPAS OB 53</div><div class="card-size">451 MB</div></div>
+    </div>
+    <div class="download-card" data-link="PANEL">
+      <div class="card-icon"><i class="fas fa-sliders-h"></i></div>
+      <div class="card-info"><div class="card-title">PANEL FFKIPAS</div><div class="card-size">change diamond and gold</div></div>
+    </div>
+    <div class="download-card" data-link="VERIF">
+      <div class="card-icon"><i class="fas fa-check-circle"></i></div>
+      <div class="card-info"><div class="card-title">VERIF MANUAL</div><div class="card-size">verify your ffkipas account uid</div></div>
+    </div>
+    <div class="download-card" data-link="TOPUP">
+      <div class="card-icon"><i class="fas fa-gem"></i></div>
+      <div class="card-info"><div class="card-title">FAKE TOP UP FF</div><div class="card-size">coming soon</div></div>
+    </div>
+    <div class="download-card" data-link="DISCORD">
+      <div class="card-icon"><i class="fab fa-discord"></i></div>
+      <div class="card-info"><div class="card-title">DISCORD</div><div class="card-size">komunitas</div></div>
+    </div>
+  </div>
+
+  <footer></footer>
+</div>
+
+<!-- SCRIPT ADSTERRA (SESUAI YANG ANDA BERIKAN) -->
+<script>
+  atOptions = {
+    'key' : '762ce3ca2bba131332a1f902c71e93d0',
+    'format' : 'iframe',
+    'height' : 50,
+    'width' : 320,
+    'params' : {}
+  };
+</script>
+<script src="https://molecularshindy.com/762ce3ca2bba131332a1f902c71e93d0/invoke.js"></script>
+
+<script>
+  atOptions = {
+    'key' : '8fff3b9f227159a62096072badbeb8b3',
+    'format' : 'iframe',
+    'height' : 60,
+    'width' : 468,
+    'params' : {}
+  };
+</script>
+<script src="https://molecularshindy.com/8fff3b9f227159a62096072badbeb8b3/invoke.js"></script>
+
+<script src="https://molecularshindy.com/42/66/b2/4266b24c619458dbd4b2acca0dd27595.js"></script>
+<script async="async" data-cfasync="false" src="https://molecularshindy.com/72a806445a05a27342a76b9923590af4/invoke.js"></script>
+<div id="container-72a806445a05a27342a76b9923590af4"></div>
+<script src="https://molecularshindy.com/77/79/84/777984cf743868735382dbd5568601e7.js"></script>
+
+<script>
+  // ========== KONFIGURASI LINK ==========
+  const LINKS = {
+    SALURAN: "https://whatsapp.com/channel/0029Vb7ZdFyJP21620EI5B01",
+    DOWNLOAD1: "https://ffkipasdownload.netlify.app/",
+    PANEL: "https://ffkipas.my.id/panel/",
+    VERIF: "https://ffkipas.my.id/verifyuid",
+    TOPUP: "#",
+    DISCORD: "https://discord.gg/CemWvnBwa",
+    VIDEO: "https://youtu.be/RhNij-_O2TM?si=DGSitvBQwrRsdtjl"
+  };
+
+  // SMARTLINK POPUP (URL YANG ANDA BERIKAN)
+  const SMARTLINK_URL = "https://molecularshindy.com/csqgzweer?key=b8c4b1684c49760215857d06a2c0e717";
+
+  // ========== VARIABEL COUNTER PER TOMBOL ==========
+  let adCounters = {
+    'DOWNLOAD1': 0,
+    'PANEL': 0,
+    'VERIF': 0,
+    'TOPUP': 0,
+    'DISCORD': 0,
+    'SALURAN': 0,
+    'VIDEO': 0
+  };
+  
+  let skipAdCount = 0;
+
+  // Elemen DOM
+  const popupOverlay = document.getElementById('popupOverlay');
+  const mainContent = document.getElementById('mainContent');
+  const loadingOverlay = document.getElementById('loadingOverlay');
+  const toast = document.getElementById('toastNotif');
+
+  function showToast(message, isError = false) {
+    toast.textContent = message;
+    toast.style.background = isError ? 'linear-gradient(135deg, #c0392b, #e74c3c)' : 'linear-gradient(135deg, #1a5fcf, #0fa86a)';
+    toast.classList.add('show');
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2500);
+  }
+
+  function openSmartlink() {
+    window.open(SMARTLINK_URL, '_blank');
+    return SMARTLINK_URL;
+  }
+
+  function processSkipAds() {
+    if (skipAdCount >= 2) {
+      showToast("✅ Akses diberikan! Memasuki halaman utama...", false);
+      popupOverlay.style.display = 'none';
+      mainContent.style.display = 'block';
+      skipAdCount = 0;
+      for (let key in adCounters) {
+        adCounters[key] = 0;
+      }
+      showToast("💡 Setiap tombol perlu 3x iklan", false);
+    } else {
+      openSmartlink();
+      skipAdCount++;
+      showToast(`🎯 Iklan ke-${skipAdCount} dari 2 untuk masuk website`, false);
+    }
+  }
+
+  function processButtonWithAds(event, targetUrl, actionName, identifier) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    if (identifier !== 'TOPUP' && (!targetUrl || targetUrl === "#")) {
+      showToast(`⚠️ Link untuk ${actionName} sedang dalam perbaikan!`, true);
+      return;
+    }
+    
+    if (identifier === 'TOPUP' && targetUrl === "#") {
+      showToast(`⚠️ Fitur FAKE TOP UP sedang dalam pengembangan!`, true);
+      return;
+    }
+    
+    let currentCount = adCounters[identifier] || 0;
+    
+    if (currentCount >= 3) {
+      showToast(`✅ Akses diberikan! Membuka ${actionName}`, false);
+      window.open(targetUrl, '_blank');
+      adCounters[identifier] = 0;
+    } else {
+      openSmartlink();
+      currentCount++;
+      adCounters[identifier] = currentCount;
+      showToast(`🎯 Iklan ke-${currentCount} dari 3 untuk ${actionName}`, false);
+    }
+  }
+
+  // ========== EVENT LISTENER ==========
+  
+  const lewatiBtn = document.getElementById('lewatiIklanBtn');
+  if (lewatiBtn) {
+    lewatiBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      processSkipAds();
+    });
+  }
+  
+  const closePopupBtn = document.getElementById('closePopupBtn');
+  if (closePopupBtn) {
+    closePopupBtn.addEventListener('click', () => {
+      processSkipAds();
+    });
+  }
+  
+  const saluranPopupBtn = document.getElementById('saluranPopupBtn');
+  if (saluranPopupBtn) {
+    saluranPopupBtn.addEventListener('click', (e) => {
+      processButtonWithAds(e, LINKS.SALURAN, "SALURAN", "SALURAN");
+    });
+  }
+  
+  const headerSaluran = document.getElementById('headerSaluranBtn');
+  if (headerSaluran) {
+    headerSaluran.addEventListener('click', (e) => {
+      processButtonWithAds(e, LINKS.SALURAN, "SALURAN", "SALURAN");
+    });
+  }
+  
+  const forwardPopup = document.getElementById('forwardBtnPopup');
+  if (forwardPopup) {
+    forwardPopup.addEventListener('click', () => {
+      alert("📢 Bagikan channel ini: " + LINKS.SALURAN);
+    });
+  }
+  
+  const copyPopup = document.getElementById('copyLinkPopup');
+  if (copyPopup) {
+    copyPopup.addEventListener('click', () => {
+      navigator.clipboard.writeText(LINKS.SALURAN).then(() => {
+        alert("✅ Link saluran disalin!");
+      }).catch(() => {
+        alert("⚠️ Gagal menyalin");
+      });
+    });
+  }
+  
+  const cards = document.querySelectorAll('.download-card');
+  cards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      const linkKey = card.getAttribute('data-link');
+      const title = card.querySelector('.card-title')?.innerText || 'Link';
+      let url = null;
+      
+      switch(linkKey) {
+        case 'DOWNLOAD1': url = LINKS.DOWNLOAD1; break;
+        case 'PANEL': url = LINKS.PANEL; break;
+        case 'VERIF': url = LINKS.VERIF; break;
+        case 'TOPUP': url = LINKS.TOPUP; break;
+        case 'DISCORD': url = LINKS.DISCORD; break;
+        default: url = null;
+      }
+      
+      processButtonWithAds(e, url, title, linkKey);
+    });
+  });
+  
+  const videoArea = document.getElementById('videoPreviewClick');
+  if (videoArea) {
+    videoArea.addEventListener('click', (e) => {
+      processButtonWithAds(e, LINKS.VIDEO, "VIDEO TUTORIAL", "VIDEO");
+    });
+  }
+  
+  const menuBtn = document.getElementById('menuIconBtn');
+  if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+      alert("📱 MENU NAVIGASI\n\n▸ Beranda\n▸ Download List\n▸ Panel FF\n▸ Discord\n\n💡 TIPS:\n• Klik LEWATI IKLAN → 2x iklan untuk masuk\n• Setiap tombol → 3x iklan (per tombol)\n• Dukung server dengan klik iklan!");
+    });
+  }
+  
+  // Gambar dinamis
+  const profileImg = document.getElementById('profileImg');
+  const logoImg = document.getElementById('logoImg');
+  const videoThumb = document.getElementById('videoThumb');
+  if (profileImg) profileImg.src = "https://i.postimg.cc/7hm4DhsV/Screenshot-2026-04-18-13-19-53-41.jpg";
+  if (logoImg) logoImg.src = "https://i.postimg.cc/qM1BHbWd/vdxxzin-e.jpg";
+  if (videoThumb) videoThumb.src = "https://i.postimg.cc/KjXkLqxC/Tak-berjudul11-20260418144552.jpg";
+  
+  // Fallback gambar error
+  const allImages = document.querySelectorAll('img');
+  allImages.forEach(img => {
+    img.addEventListener('error', function() {
+      if (!this.dataset.fallback) {
+        this.dataset.fallback = 'true';
+        this.src = 'https://placehold.co/200x200?text=KIPAS';
+      }
+    });
+  });
+  
+  // Pindahkan banner ke container yang benar
+  function moveBanners() {
+    const banner320 = document.querySelector('ins.adsbygoogle, iframe[src*="molecularshindy"]');
+    const banner468 = document.querySelectorAll('ins.adsbygoogle, iframe[src*="molecularshindy"]');
+    
+    const container320 = document.getElementById('banner-320x50');
+    const container468 = document.getElementById('banner-468x60');
+    
+    // Script banner akan otomatis merender di posisinya masing-masing
+    // Karena script sudah dijalankan, banner akan muncul di tempatnya
+  }
+  
+  // Jalankan setelah semua script siap
+  setTimeout(moveBanners, 1000);
+  
+  // Inisialisasi
+  popupOverlay.style.display = 'flex';
+  mainContent.style.display = 'none';
+  skipAdCount = 0;
+  for (let key in adCounters) {
+    adCounters[key] = 0;
+  }
+  
+  console.log("✅ WEBSITE SIAP!");
+  console.log("📊 Sistem iklan aktif:");
+  console.log("   - LEWATI IKLAN → 2x smartlink untuk masuk website");
+  console.log("   - Setiap tombol → 3x smartlink PER TOMBOL");
+  console.log("💰 Script iklan Adsterra berjalan dengan script asli Anda!");
+</script>
+</body>
+</html>
