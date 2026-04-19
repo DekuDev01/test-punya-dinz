@@ -27,6 +27,7 @@
       z-index: 2;
     }
 
+    /* ========== POPUP AWAL ========== */
     .popup-overlay {
       position: fixed;
       top: 0;
@@ -128,6 +129,7 @@
     }
     .big-action-btn.lewati { background: #0a4b2e; }
 
+    /* ========== HALAMAN UTAMA ========== */
     header { display: flex; justify-content: space-between; align-items: center; padding: 16px 0 8px; }
     .logo-area { display: flex; align-items: center; gap: 12px; }
     .logo-img { width: 46px; height: 46px; border-radius: 20px; object-fit: cover; }
@@ -172,7 +174,7 @@
 
     .video-preview {
       position: relative;
-      margin: 15px 0 25px;
+      margin: 15px 0 20px;
       border-radius: 24px;
       overflow: hidden;
       aspect-ratio: 16 / 9;
@@ -205,8 +207,9 @@
       color: white;
     }
 
+    /* Banner Iklan - HANYA 1 BANNER SAJA */
     .ad-banner-container {
-      margin: 15px 0;
+      margin: 10px 0;
       text-align: center;
       background: rgba(0,0,0,0.1);
       border-radius: 16px;
@@ -214,7 +217,7 @@
     }
     .ad-label {
       font-size: 9px;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.3);
       text-transform: uppercase;
       margin-bottom: 6px;
       letter-spacing: 1px;
@@ -223,14 +226,13 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 0 auto;
     }
 
-    .download-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; margin-bottom: 30px; }
+    .download-grid { display: flex; flex-direction: column; gap: 12px; margin-top: 20px; margin-bottom: 20px; }
     .download-card {
       background: linear-gradient(105deg, #166d47, #1f8a5a);
       border-radius: 24px;
-      padding: 14px 22px;
+      padding: 12px 20px;
       display: flex;
       align-items: center;
       gap: 18px;
@@ -240,14 +242,14 @@
       transition: all 0.2s;
     }
     .download-card:active { transform: scale(0.98); }
-    .card-icon { font-size: 26px; width: 40px; text-align: center; color: white; }
-    .card-title { font-weight: 800; font-size: 18px; color: white; }
-    .card-size { font-size: 12px; color: #e0ffd4; }
+    .card-icon { font-size: 24px; width: 40px; text-align: center; color: white; }
+    .card-title { font-weight: 800; font-size: 17px; color: white; }
+    .card-size { font-size: 11px; color: #e0ffd4; }
 
     button, .download-card, .channel-pill, .big-action-btn { cursor: pointer; transition: all 0.2s; }
     button:hover, .download-card:hover, .channel-pill:hover { filter: brightness(1.03); transform: scale(0.99); }
     html { scroll-behavior: smooth; }
-    footer { height: 20px; }
+    footer { height: 10px; }
 
     .toast-notification {
       position: fixed;
@@ -256,10 +258,10 @@
       transform: translateX(-50%) translateY(100px);
       background: linear-gradient(135deg, #1a5fcf, #0fa86a);
       color: white;
-      padding: 12px 24px;
+      padding: 10px 20px;
       border-radius: 50px;
       font-weight: bold;
-      font-size: 13px;
+      font-size: 12px;
       z-index: 2000;
       opacity: 0;
       transition: all 0.3s ease;
@@ -311,7 +313,7 @@
     }
 
     /* Responsive */
-    @media (max-width: 480px) {
+    @media (max-width: 500px) {
       .banner-single iframe,
       .banner-single ins {
         max-width: 100%;
@@ -372,7 +374,7 @@
     <div class="stat-card"><div class="dot pink"></div><div><span class="stat-text">BERHASIL DOWNLOAD: 60.512</span></div></div>
   </div>
 
-  <!-- IKLAN BANNER (HANYA 1 BANNER SAJA AGAR TIDAK MENGGANGGU LAYOUT) -->
+  <!-- IKLAN BANNER (HANYA 1 BANNER) -->
   <div class="ad-banner-container">
     <div class="ad-label">Advertisement</div>
     <div class="banner-single" id="banner-container"></div>
@@ -610,7 +612,7 @@
   const menuBtn = document.getElementById('menuIconBtn');
   if (menuBtn) {
     menuBtn.addEventListener('click', () => {
-      alert("📱 MENU NAVIGASI\n\n▸ Beranda\n▸ Download List\n▸ Panel FF\n▸ Discord\n\n💡 TIPS:\n• Klik LEWATI IKLAN → 2x iklan untuk masuk\n• Setiap tombol → 3x iklan (per tombol)\n• Dukung server dengan klik iklan!");
+      alert("📱 MENU NAVIGASI\n\n▸ Beranda\n▸ Download List\n▸ Panel FF\n▸ Discord\n\n💡 TIPS:\n• Klik LEWATI IKLAN → 2x iklan untuk masuk\n• Setiap tombol → 3x iklan (per tombol)\n• NOTE: JANGAN LUPA BUY VIP🤭");
     });
   }
   
@@ -645,7 +647,7 @@
   console.log("📊 Sistem iklan aktif:");
   console.log("   - LEWATI IKLAN → 2x smartlink untuk masuk website");
   console.log("   - Setiap tombol → 3x smartlink PER TOMBOL");
-  console.log("💰 Script iklan Adsterra berjalan dengan minimal banner (1 posisi)");
+  console.log("💰 Script iklan Adsterra berjalan dengan 1 banner di halaman utama");
 </script>
 </body>
 </html>
