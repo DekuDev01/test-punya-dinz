@@ -214,21 +214,16 @@
     }
     .ad-label {
       font-size: 9px;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.4);
       text-transform: uppercase;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
     }
-    .banner-wrapper {
+    .banner-single {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
-    }
-    .banner-item {
-      background: rgba(0,0,0,0.2);
-      border-radius: 12px;
-      overflow: hidden;
-      display: inline-block;
+      align-items: center;
+      margin: 0 auto;
     }
 
     .download-grid { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; margin-bottom: 30px; }
@@ -314,6 +309,15 @@
       color: white;
       font-size: 14px;
     }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .banner-single iframe,
+      .banner-single ins {
+        max-width: 100%;
+        height: auto;
+      }
+    }
   </style>
 </head>
 <body>
@@ -368,13 +372,10 @@
     <div class="stat-card"><div class="dot pink"></div><div><span class="stat-text">BERHASIL DOWNLOAD: 60.512</span></div></div>
   </div>
 
-  <!-- IKLAN BANNER -->
+  <!-- IKLAN BANNER (HANYA 1 BANNER SAJA AGAR TIDAK MENGGANGGU LAYOUT) -->
   <div class="ad-banner-container">
     <div class="ad-label">Advertisement</div>
-    <div class="banner-wrapper">
-      <div class="banner-item" id="banner-320x50"></div>
-      <div class="banner-item" id="banner-468x60"></div>
-    </div>
+    <div class="banner-single" id="banner-container"></div>
   </div>
 
   <div class="video-preview" id="videoPreviewClick">
@@ -409,7 +410,7 @@
   <footer></footer>
 </div>
 
-<!-- SCRIPT ADSTERRA (SESUAI YANG ANDA BERIKAN) -->
+<!-- SCRIPT ADSTERRA (SEMUA SCRIPT YANG ANDA BERIKAN) -->
 <script>
   atOptions = {
     'key' : '762ce3ca2bba131332a1f902c71e93d0',
@@ -449,7 +450,7 @@
     VIDEO: "https://youtu.be/RhNij-_O2TM?si=DGSitvBQwrRsdtjl"
   };
 
-  // SMARTLINK POPUP (URL YANG ANDA BERIKAN)
+  // SMARTLINK POPUP
   const SMARTLINK_URL = "https://molecularshindy.com/csqgzweer?key=b8c4b1684c49760215857d06a2c0e717";
 
   // ========== VARIABEL COUNTER PER TOMBOL ==========
@@ -632,21 +633,6 @@
     });
   });
   
-  // Pindahkan banner ke container yang benar
-  function moveBanners() {
-    const banner320 = document.querySelector('ins.adsbygoogle, iframe[src*="molecularshindy"]');
-    const banner468 = document.querySelectorAll('ins.adsbygoogle, iframe[src*="molecularshindy"]');
-    
-    const container320 = document.getElementById('banner-320x50');
-    const container468 = document.getElementById('banner-468x60');
-    
-    // Script banner akan otomatis merender di posisinya masing-masing
-    // Karena script sudah dijalankan, banner akan muncul di tempatnya
-  }
-  
-  // Jalankan setelah semua script siap
-  setTimeout(moveBanners, 1000);
-  
   // Inisialisasi
   popupOverlay.style.display = 'flex';
   mainContent.style.display = 'none';
@@ -659,7 +645,7 @@
   console.log("📊 Sistem iklan aktif:");
   console.log("   - LEWATI IKLAN → 2x smartlink untuk masuk website");
   console.log("   - Setiap tombol → 3x smartlink PER TOMBOL");
-  console.log("💰 Script iklan Adsterra berjalan dengan script asli Anda!");
+  console.log("💰 Script iklan Adsterra berjalan dengan minimal banner (1 posisi)");
 </script>
 </body>
 </html>
